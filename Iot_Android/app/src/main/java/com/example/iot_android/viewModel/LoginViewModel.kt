@@ -19,7 +19,6 @@ class LoginViewModel : ViewModel(){
     val password = MutableLiveData<String>()
     val username = MutableLiveData<String>()
 
-    val registerBtn = SingleLiveEvent<Unit>()
     val loginBtn = SingleLiveEvent<Unit>()
 
     var checkLogin = MutableLiveData<Boolean>()
@@ -41,10 +40,6 @@ class LoginViewModel : ViewModel(){
                 MyApplication.prefs.setToken("token", response.body()?.token.toString())
             }
         })
-    }
-
-    fun r_btnClick(){
-        registerBtn.call()
     }
 
     fun l_btnClick(){

@@ -45,10 +45,6 @@ class LoginActivity : AppCompatActivity() {
                     toast("로그인 실패")
                 }
             })
-
-            registerBtn.observe(this@LoginActivity, Observer {
-                startActivity(RegisterActivity::class.java)
-            })
         }
 
     }
