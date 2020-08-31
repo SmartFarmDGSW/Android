@@ -33,15 +33,11 @@ class LoginActivity : AppCompatActivity() {
 
         with(mViewModel){
             loginBtn.observe(this@LoginActivity, Observer {
-                getlogindata()
+                login()
             })
 
             checkLogin.observe(this@LoginActivity, Observer {
                 if(checkLogin.value == true) {
-                    if(check_login.isChecked)
-                    {
-                        MyApplication.prefs.setCheckLogin("checklogin", true)
-                    }
                     toast("로그인 성공")
                     startActivity(MainActivity::class.java)
                 }
