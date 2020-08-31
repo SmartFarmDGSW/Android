@@ -12,6 +12,7 @@ import com.example.iot_android.databinding.ActivityRegisterBinding
 import com.example.iot_android.retrofit.RetrofitClient
 import com.example.iot_android.viewModel.RegisterViewModel
 import com.example.iot_android.widget.extension.startActivity
+import com.example.iot_android.widget.extension.toast
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -27,20 +28,20 @@ class RegisterActivity : AppCompatActivity() {
         mBinding.lifecycleOwner = this
         mBinding.executePendingBindings()
 
-        mViewModel.retrofit = RetrofitClient.getInstance()
-
         with(mViewModel){
             btn.observe(this@RegisterActivity, Observer {
-                register()
+                checkNullFun()
             })
-            checkLogin.observe(this@RegisterActivity, Observer {
-                if (checkLogin.value == true) {
-                    Log.d("ASD", "ASD")
-                    Toast.makeText(applicationContext, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                    startActivity(MainActivity::class.java)
-                } else if (checkLogin.value == false) {
-                    Toast.makeText(applicationContext, "회원가입 실패", Toast.LENGTH_SHORT).show()
+            checkNull.observe(this@RegisterActivity, Observer {
+                if(checkNull.value == false)
+                {
+                    toast("모두 값을 입력해주세요.")
                 }
+                else{
+                    setData()
+                    startActivity(RegisterMakeProfileActivity::class.java)
+                }
+
             })
         }
 
