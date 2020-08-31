@@ -10,12 +10,12 @@ import retrofit2.http.POST
 
 interface Dao {
     @POST("/auth/login/")
-    fun getlogindata(
+    fun login(
         @Body loginBody: LoginBody
     ) : Call<LoginData>
 
     @POST("/auth/registration/")
-    fun sendregister(
+    fun register(
         @Body body: RegisterBody
     ) :Call<RegisterData>
 }

@@ -3,10 +3,11 @@ package com.example.iot_android.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.iot_android.model.LoginBody
+import com.example.iot_android.model.LoginData
 import com.example.iot_android.retrofit.Dao
 import com.example.iot_android.widget.MyApplication
 import com.example.iot_android.widget.SingleLiveEvent
-import com.example.iot_android.model.Register
+import com.example.iot_android.model.RegisterData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,14 +27,14 @@ class LoginViewModel : ViewModel(){
     lateinit var myAPI : Dao
     lateinit var retrofit: Retrofit
 
-    fun getlogindata() {
+    fun login() {
         myAPI = retrofit.create(Dao::class.java)
-        myAPI.getlogindata(LoginBody(username = username.value.toString(), email = email.value.toString(), password = password.value.toString())).enqueue(object :
-            Callback<Register> {
-            override fun onFailure(call: Call<Register>, t: Throwable) {
+        myAPI.login(LoginBody(username = username.value.toString(), email = email.value.toString(), password = password.value.toString())).enqueue(object :
+            Callback<LoginData> {
+            override fun onFailure(call: Call<LoginData>, t: Throwable) {
                 checkLogin.value = false
             }
-            override fun onResponse(call: Call<Register>, response: Response<Register>) {
+            override fun onResponse(call: Call<LoginData>, response: Response<LoginData>) {
                 checkLogin.value = true
                 MyApplication.prefs.setUsername("name", response.body()?.user?.username.toString())
                 MyApplication.prefs.setEmail("email", response.body()?.user?.email.toString())
