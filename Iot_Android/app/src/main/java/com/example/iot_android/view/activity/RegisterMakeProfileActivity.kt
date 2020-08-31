@@ -10,6 +10,7 @@ import com.example.iot_android.databinding.ActivityRegisterBinding
 import com.example.iot_android.databinding.ActivityRegisterMakeProfileBinding
 import com.example.iot_android.viewModel.RegisterMakeProfileViewModel
 import com.example.iot_android.viewModel.RegisterViewModel
+import com.example.iot_android.widget.extension.startActivity
 import com.example.iot_android.widget.extension.toast
 
 class RegisterMakeProfileActivity : AppCompatActivity() {
@@ -31,12 +32,26 @@ class RegisterMakeProfileActivity : AppCompatActivity() {
             btn.observe(this@RegisterMakeProfileActivity, Observer {
                 checkNullFun()
             })
+
             checkNull.observe(this@RegisterMakeProfileActivity, Observer {
                 if(checkNull.value == false)
                 {
                     toast("이름을 입력해주세요")
                 }
                 else{
+                    register()
+                }
+            })
+            
+            checkRegister.observe(this@RegisterMakeProfileActivity, Observer {
+                if(checkRegister.value == false)
+                {
+                    toast("회원가입 실패")
+                    startActivity(LoginMainActivity::class.java)
+                }
+                else{
+                    toast("회원가입 성공")
+                    startActivity(MainActivity::class.java)
                 }
             })
         }
