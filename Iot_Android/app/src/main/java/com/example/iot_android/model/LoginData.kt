@@ -1,6 +1,6 @@
 package com.example.iot_android.model
 
-class LoginData(
+data class LoginData(
     val token : String,
     val user: User
 ) {
