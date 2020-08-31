@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.LoginMainActivity">
+
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="반갑습니다!"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/login_main_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/intro"
+        app:layout_constraintEnd_toEndOf="@+id/hello"
+        app:layout_constraintHeight_percent="0.279"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="@+id/hello"
+        app:layout_constraintTop_toBottomOf="@+id/hello"
+        app:layout_constraintWidth_percent="0.546" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/login_btn"
+        android:text="로그인"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/login_main_image"
+        app:layout_constraintHeight_percent="0.054"
+        app:layout_constraintStart_toStartOf="@+id/login_main_image"
+        app:layout_constraintTop_toBottomOf="@id/login_main_image"
+        app:layout_constraintWidth_percent="0.856" />
+
+    <TextView
+        android:id="@+id/no_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="계정이 없으신가요?"
+        android:textColor="#32C577"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/login_btn"
+        app:layout_constraintStart_toStartOf="@+id/login_btn"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

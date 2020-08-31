@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activity.LoginActivity">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.iot_android.viewModel.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:text="로그인을 해주세요"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="275dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/edit_border"
+            android:hint="이름"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp"
+            android:text="@={viewModel.username}"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="275dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_border"
+            android:hint="이메일"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp"
+            android:text="@={viewModel.email}"
+            app:layout_constraintEnd_toEndOf="@+id/username"
+            app:layout_constraintStart_toStartOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="275dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_border"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp"
+            android:text="@={viewModel.password}"
+            app:layout_constraintEnd_toEndOf="@+id/email"
+            app:layout_constraintStart_toStartOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="152dp"
+            android:onClick="@{()->viewModel.l_btnClick()}"
+            android:text="로그인"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/login_btn"
+            app:layout_constraintEnd_toEndOf="@+id/password"
+            app:layout_constraintStart_toStartOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.iot_android.viewModel.RegisterMakeProfileViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.RegisterMakeProfileActivity">
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:text="이름을 입력해 주세요"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="186dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="204dp"
+            android:background="@drawable/edit_border"
+            android:gravity="center_horizontal"
+            android:hint="이름"
+            android:inputType="textCapWords|textPersonName"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="@+id/textView47"
+            app:layout_constraintStart_toStartOf="@+id/textView47"
+            app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+        <Button
+            android:layout_width="319dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="212dp"
+            android:background="@drawable/login_btn"
+            android:text="회원 가입"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/editText3"
+            app:layout_constraintStart_toStartOf="@+id/editText3"
+            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
