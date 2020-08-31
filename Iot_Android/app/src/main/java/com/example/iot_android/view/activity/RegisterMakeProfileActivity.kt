@@ -3,12 +3,14 @@ package com.example.iot_android.view.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.iot_android.R
 import com.example.iot_android.databinding.ActivityRegisterBinding
 import com.example.iot_android.databinding.ActivityRegisterMakeProfileBinding
 import com.example.iot_android.viewModel.RegisterMakeProfileViewModel
 import com.example.iot_android.viewModel.RegisterViewModel
+import com.example.iot_android.widget.extension.toast
 
 class RegisterMakeProfileActivity : AppCompatActivity() {
 
@@ -24,5 +26,19 @@ class RegisterMakeProfileActivity : AppCompatActivity() {
         mBinding.viewModel = mViewModel
         mBinding.lifecycleOwner = this
         mBinding.executePendingBindings()
+
+        with(mViewModel){
+            btn.observe(this@RegisterMakeProfileActivity, Observer {
+                checkNullFun()
+            })
+            checkNull.observe(this@RegisterMakeProfileActivity, Observer {
+                if(checkNull.value == false)
+                {
+                    toast("이름을 입력해주세요")
+                }
+                else{
+                }
+            })
+        }
     }
 }

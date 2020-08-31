@@ -37,15 +37,14 @@ class PreferenceUtil(context: Context) {
         prefs.edit().putString(key, str).apply()
     }
 
-
-    fun setCheckPermission(key: String, bol: Boolean)
+    fun getPassword(key: String, defValue: String): String
     {
-        prefs.edit().putBoolean(key, bol).apply()
+        return prefs.getString(key, defValue).toString()
     }
 
-    fun getCheckPermission(key: String, defValue: Boolean): Boolean
+    fun setPassword(key: String, str: String?)
     {
-        return prefs.getBoolean(key, defValue)
+        prefs.edit().putString(key, str).apply()
     }
 
 

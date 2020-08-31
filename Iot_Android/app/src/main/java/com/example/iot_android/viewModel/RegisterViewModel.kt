@@ -29,6 +29,7 @@ class RegisterViewModel : ViewModel() {
 
     fun setData(){
         MyApplication.prefs.setEmail("loginDataEmail", email.value)
+        MyApplication.prefs.setPassword("loginDataPassword", password.value)
     }
 
     fun btnClick(){
