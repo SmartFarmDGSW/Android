@@ -1,6 +1,6 @@
 package com.example.iot_android.model
 
-data class Body(
+data class RegisterBody(
     val username: String,
     val email: String,
     val password1: String,
