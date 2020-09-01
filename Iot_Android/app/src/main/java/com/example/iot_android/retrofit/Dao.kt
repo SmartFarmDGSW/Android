@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface Dao {
     @POST("/auth/login/")
@@ -21,6 +22,9 @@ interface Dao {
         @Body body: RegisterBody
     ) :Call<RegisterData>
 
-    @GET("lat=35.441792&lon=127.689&units=metric&exclude=minutely,current,hourly&appid=${R.string.api_key}")
-    fun getWeather()
+    @GET("lat={lat}&lon={lon}&units=metric&exclude=minutely,current,hourly&appid=${R.string.api_key}")
+    fun getWeather(
+        @Path("lat") lat: String,
+        @Path("lon") lon: String
+    )
 }
