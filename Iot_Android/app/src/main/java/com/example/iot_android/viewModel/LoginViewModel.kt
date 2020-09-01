@@ -34,6 +34,7 @@ class LoginViewModel : ViewModel(){
                 checkLogin.value = false
             }
             override fun onResponse(call: Call<LoginData>, response: Response<LoginData>) {
+
                 checkLogin.value = true
                 MyApplication.prefs.setUsername("name", response.body()?.user?.username.toString())
                 MyApplication.prefs.setEmail("email", response.body()?.user?.email.toString())
