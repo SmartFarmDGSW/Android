@@ -42,7 +42,7 @@ class RegisterMakeProfileActivity : AppCompatActivity() {
                     register()
                 }
             })
-            
+
             checkRegister.observe(this@RegisterMakeProfileActivity, Observer {
                 if(checkRegister.value == false)
                 {
