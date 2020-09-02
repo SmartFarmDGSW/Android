@@ -4,4 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class WeatherViewModel : ViewModel() {
 
+    fun getLocation(){
+
+    }
 }
