@@ -20,7 +20,7 @@ class LoginMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login_main)
         mViewModel = ViewModelProvider(this)[LoginMainViewModel::class.java]
 
         mBinding.viewModel = mViewModel
