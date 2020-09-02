@@ -13,8 +13,7 @@ import com.example.iot_android.databinding.FragmentWeatherBinding
 import com.example.iot_android.viewModel.WeatherViewModel
 
 class WeatherFragment : Fragment() {
-
-    private lateinit var gpsTracker: GpsTracker
+    
     lateinit var mBinding: FragmentWeatherBinding
     lateinit var weatherViewModel: WeatherViewModel
 
