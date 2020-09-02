@@ -7,10 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import com.example.iot_android.R
+import com.example.iot_android.widget.MyApplication
 import com.example.iot_android.widget.extension.startActivity
 import com.example.iot_android.widget.extension.toast
 
 class SplashActivity : AppCompatActivity() {
+
+    var checkPermission = MyApplication.prefs.getCheckPermission("checklogin", false)
 
     var permission_list = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
@@ -20,8 +23,13 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        checkPermission()
-        startActivity(LoginMainActivity::class.java)
+
+        if(checkPermission){
+            startActivity(LoginMainActivity::class.java)
+        }
+        else {
+            checkPermission()
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -45,6 +53,7 @@ class SplashActivity : AppCompatActivity() {
             for (i in grantResults.indices) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     startActivity(LoginMainActivity::class.java)
+                    MyApplication.prefs.setCheckPermission("permission", true)
                 } else {
                     toast("퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요")
                     finish()
