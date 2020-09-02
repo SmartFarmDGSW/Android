@@ -14,6 +14,7 @@ import com.example.iot_android.viewModel.WeatherViewModel
 
 class WeatherFragment : Fragment() {
 
+    private lateinit var gpsTracker: GpsTracker
     lateinit var mBinding: FragmentWeatherBinding
     lateinit var weatherViewModel: WeatherViewModel
 
@@ -33,7 +34,9 @@ class WeatherFragment : Fragment() {
         observerViewModel()
     }
 
-    fun init(){}
+    fun init() {
+
+    }
 
 
     private fun viewModelProvider() {
@@ -45,7 +48,7 @@ class WeatherFragment : Fragment() {
 
     private fun observerViewModel() {
         with(weatherViewModel) {
-
+            getLocation()
         }
     }
 }
