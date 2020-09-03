@@ -21,7 +21,7 @@ class LoginViewModel : ViewModel(){
 
     val loginBtn = SingleLiveEvent<Unit>()
 
-    var checkLogin = MutableLiveData<Boolean>()
+    var status = MutableLiveData<Int>()
 
     lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
@@ -31,15 +31,11 @@ class LoginViewModel : ViewModel(){
         myAPI.login(LoginBody(username = username.value.toString(), email = email.value.toString(), password = password.value.toString())).enqueue(object :
             Callback<LoginData> {
             override fun onFailure(call: Call<LoginData>, t: Throwable) {
-                checkLogin.value = false
+                status.value = 400
             }
             override fun onResponse(call: Call<LoginData>, response: Response<LoginData>) {
-                Log.d("TAG", username.value.toString())
-                Log.d("TAG", email.value.toString())
-                Log.d("TAG", password.value.toString())
-                Log.d("TAG", response.code().toString())
                 Log.d("TAG", "성공")
-                checkLogin.value = true
+                status.value = response.code()
                 MyApplication.prefs.setUsername("name", username.value.toString())
                 MyApplication.prefs.setEmail("email", email.value.toString())
                 MyApplication.prefs.setToken("token", response.body()?.key)

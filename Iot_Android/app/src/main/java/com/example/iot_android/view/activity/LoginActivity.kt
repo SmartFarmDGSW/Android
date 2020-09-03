@@ -37,10 +37,10 @@ class LoginActivity : AppCompatActivity() {
                 login()
             })
 
-            checkLogin.observe(this@LoginActivity, Observer {
-                if(checkLogin.value == true) {
+            status.observe(this@LoginActivity, Observer {
+                if(status.value == 200) {
                     toast("로그인 성공")
-                    Log.d("TAG", MyApplication.prefs.getToken("token", "d없음"))
+                    Log.d("TAG", MyApplication.prefs.getToken("token", "없음"))
                     startActivity(MainActivity::class.java)
                 }
                 else {
