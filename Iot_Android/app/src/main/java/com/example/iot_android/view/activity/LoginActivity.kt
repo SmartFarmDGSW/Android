@@ -1,6 +1,7 @@
 package com.example.iot_android.view.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -39,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
             checkLogin.observe(this@LoginActivity, Observer {
                 if(checkLogin.value == true) {
                     toast("로그인 성공")
+                    Log.d("TAG", MyApplication.prefs.getToken("token", "d없음"))
                     startActivity(MainActivity::class.java)
                 }
                 else {

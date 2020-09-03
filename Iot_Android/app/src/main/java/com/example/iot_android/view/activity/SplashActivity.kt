@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.iot_android.R
 import com.example.iot_android.widget.MyApplication
@@ -13,7 +14,7 @@ import com.example.iot_android.widget.extension.toast
 
 class SplashActivity : AppCompatActivity() {
 
-    var checkPermission = MyApplication.prefs.getCheckPermission("checklogin", false)
+    var checkPermission = MyApplication.prefs.getCheckPermission("permission", false)
 
     var permission_list = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
@@ -23,6 +24,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        Log.d("TAG", checkPermission.toString())
 
         if(checkPermission){
             startActivity(LoginMainActivity::class.java)
@@ -52,6 +55,7 @@ class SplashActivity : AppCompatActivity() {
         if (requestCode == 0) {
             for (i in grantResults.indices) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("TAG", "완료")
                     startActivity(LoginMainActivity::class.java)
                     MyApplication.prefs.setCheckPermission("permission", true)
                 } else {

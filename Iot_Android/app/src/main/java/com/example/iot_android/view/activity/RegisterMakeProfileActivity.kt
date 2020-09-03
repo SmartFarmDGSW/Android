@@ -2,12 +2,15 @@ package com.example.iot_android.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.iot_android.R
 import com.example.iot_android.databinding.ActivityRegisterBinding
 import com.example.iot_android.databinding.ActivityRegisterMakeProfileBinding
+import com.example.iot_android.retrofit.RetrofitClient
 import com.example.iot_android.viewModel.RegisterMakeProfileViewModel
 import com.example.iot_android.viewModel.RegisterViewModel
 import com.example.iot_android.widget.extension.startActivity
@@ -28,6 +31,8 @@ class RegisterMakeProfileActivity : AppCompatActivity() {
         mBinding.lifecycleOwner = this
         mBinding.executePendingBindings()
 
+        mViewModel.retrofit = RetrofitClient.getInstance()
+
         with(mViewModel){
             btn.observe(this@RegisterMakeProfileActivity, Observer {
                 checkNullFun()
@@ -36,9 +41,11 @@ class RegisterMakeProfileActivity : AppCompatActivity() {
             checkNull.observe(this@RegisterMakeProfileActivity, Observer {
                 if(checkNull.value == false)
                 {
+                    Log.d("TAG", "이름")
                     toast("이름을 입력해주세요")
                 }
                 else{
+                    Log.d("TAG", "시작서버")
                     register()
                 }
             })

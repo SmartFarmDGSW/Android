@@ -7,4 +7,6 @@ class WeatherViewModel : ViewModel() {
     fun getLocation(){
 
     }
+
+
 }

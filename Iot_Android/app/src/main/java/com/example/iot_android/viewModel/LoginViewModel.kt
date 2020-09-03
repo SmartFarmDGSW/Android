@@ -1,13 +1,13 @@
 package com.example.iot_android.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.iot_android.model.LoginBody
 import com.example.iot_android.model.LoginData
-import com.example.iot_android.retrofit.Dao
+import com.example.iot_android.retrofit.InterfaceService
 import com.example.iot_android.widget.MyApplication
 import com.example.iot_android.widget.SingleLiveEvent
-import com.example.iot_android.model.RegisterData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,22 +23,26 @@ class LoginViewModel : ViewModel(){
 
     var checkLogin = MutableLiveData<Boolean>()
 
-    lateinit var myAPI : Dao
+    lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
 
     fun login() {
-        myAPI = retrofit.create(Dao::class.java)
+        myAPI = retrofit.create(InterfaceService::class.java)
         myAPI.login(LoginBody(username = username.value.toString(), email = email.value.toString(), password = password.value.toString())).enqueue(object :
             Callback<LoginData> {
             override fun onFailure(call: Call<LoginData>, t: Throwable) {
                 checkLogin.value = false
             }
             override fun onResponse(call: Call<LoginData>, response: Response<LoginData>) {
-
+                Log.d("TAG", username.value.toString())
+                Log.d("TAG", email.value.toString())
+                Log.d("TAG", password.value.toString())
+                Log.d("TAG", response.code().toString())
+                Log.d("TAG", "성공")
                 checkLogin.value = true
-                MyApplication.prefs.setUsername("name", response.body()?.user?.username.toString())
-                MyApplication.prefs.setEmail("email", response.body()?.user?.email.toString())
-                MyApplication.prefs.setToken("token", response.body()?.token.toString())
+                MyApplication.prefs.setUsername("name", username.value.toString())
+                MyApplication.prefs.setEmail("email", email.value.toString())
+                MyApplication.prefs.setToken("token", response.body()?.key)
             }
         })
     }

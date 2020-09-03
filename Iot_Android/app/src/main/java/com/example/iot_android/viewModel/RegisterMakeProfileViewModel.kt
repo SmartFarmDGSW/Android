@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.iot_android.model.RegisterBody
 import com.example.iot_android.model.RegisterData
-import com.example.iot_android.retrofit.Dao
+import com.example.iot_android.retrofit.InterfaceService
 import com.example.iot_android.widget.MyApplication
 import com.example.iot_android.widget.SingleLiveEvent
 import retrofit2.Call
@@ -20,19 +20,15 @@ class RegisterMakeProfileViewModel : ViewModel() {
     var checkNull = MutableLiveData<Boolean>()
     var checkRegister = MutableLiveData<Boolean>()
 
-    lateinit var myAPI : Dao
+    lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
 
     fun checkNullFun(){
-        if(username.value != null)
-        {
-            checkNull.value = true
-        }
-        checkNull.value = false
+        checkNull.value = username.value != null
     }
 
     fun register(){
-        myAPI = retrofit.create(Dao::class.java)
+        myAPI = retrofit.create(InterfaceService::class.java)
         myAPI.register(RegisterBody(username = username.value.toString(),
                                         email = MyApplication.prefs.getEmail("loginDataEmail", ""),
                                         password1 = MyApplication.prefs.getPassword("loginDataPassword", ""),
@@ -45,7 +41,8 @@ class RegisterMakeProfileViewModel : ViewModel() {
 
             override fun onResponse(call: Call<RegisterData>, response: Response<RegisterData>) {
                 checkRegister.value = true
-                Log.d("pk", "pk:"+response.body()?.user?.pk)
+                MyApplication.prefs.setToken("token", response.body()?.key)
+                Log.d("key", "pk:"+response.body()?.key)
             }
         })
     }
