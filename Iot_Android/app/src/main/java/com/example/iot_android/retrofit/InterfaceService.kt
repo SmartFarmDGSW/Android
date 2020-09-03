@@ -12,7 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface Dao {
+interface InterfaceService {
     @POST("/auth/login/")
     fun login(
         @Body loginBody: LoginBody

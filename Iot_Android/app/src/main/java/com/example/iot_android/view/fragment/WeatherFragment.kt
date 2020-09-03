@@ -46,7 +46,7 @@ class WeatherFragment : Fragment() {
         if(!checkLocationServicesStatus())
             showDialogForLocationServiceSetting()
 
-        gpsTracker = GpsTracker(this);
+        gpsTracker = GpsTracker(this)
         gpsTracker.getLocation(requireContext())
 
         val latitude = gpsTracker!!.getLatitude()

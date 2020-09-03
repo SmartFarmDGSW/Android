@@ -25,17 +25,19 @@ class RegisterActivity : AppCompatActivity() {
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_register)
         mViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
+        mBinding.viewModel = mViewModel
         mBinding.lifecycleOwner = this
         mBinding.executePendingBindings()
 
         with(mViewModel){
             btn.observe(this@RegisterActivity, Observer {
+                Log.d("TAG", "btnClick")
                 checkNullFun()
             })
             checkNull.observe(this@RegisterActivity, Observer {
                 if(checkNull.value == false)
                 {
-                    toast("모두 값을 입력해주세요.")
+                    toast("모든 값을 입력해주세요.")
                 }
                 else{
                     setData()

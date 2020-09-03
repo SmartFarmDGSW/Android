@@ -1,6 +1,7 @@
 package com.example.iot_android.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.example.iot_android.R
 import com.example.iot_android.databinding.FragmentMainpageBinding
 import com.example.iot_android.viewModel.MainPageViewModel
 import com.example.iot_android.retrofit.RetrofitClient
+import com.example.iot_android.widget.MyApplication
 
 class MainPageFragment : Fragment() {
 
@@ -31,8 +33,13 @@ class MainPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModelProvider()
+        init()
         observerViewModel()
+    }
 
+    private fun init() {
+
+        Log.d("토큰", MyApplication.prefs.getToken("token", "없음"))
     }
 
     private fun viewModelProvider() {
