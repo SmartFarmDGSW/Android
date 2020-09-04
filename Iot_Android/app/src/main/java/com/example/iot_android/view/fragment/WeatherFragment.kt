@@ -7,14 +7,13 @@ import android.content.Intent
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.iot_android.R
 import com.example.iot_android.databinding.FragmentWeatherBinding
 import com.example.iot_android.viewModel.WeatherViewModel
@@ -24,7 +23,7 @@ class WeatherFragment : Fragment() {
 
     private lateinit var gpsTracker: GpsTracker
     lateinit var mBinding: FragmentWeatherBinding
-    lateinit var weatherViewModel: WeatherViewModel
+    lateinit var mViewModel: WeatherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,23 +48,23 @@ class WeatherFragment : Fragment() {
         gpsTracker = GpsTracker(this)
         gpsTracker.getLocation(requireContext())
 
-        val latitude = gpsTracker!!.getLatitude()
-        val longitude = gpsTracker!!.getLongitude()
-
-        Log.d("TAG", "위도 : $latitude, 경도 : $longitude")
+        mViewModel.latitude.value = gpsTracker!!.getLatitude()
+        mViewModel.longitude.value = gpsTracker!!.getLongitude()
     }
 
 
     private fun viewModelProvider() {
-        weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
-        mBinding.viewModel = weatherViewModel
+        mViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
+        mBinding.viewModel = mViewModel
         mBinding.lifecycleOwner = this
         mBinding.executePendingBindings()
     }
 
     private fun observerViewModel() {
-        with(weatherViewModel) {
-            getLocation()
+        with(mViewModel) {
+            latitude.observe(viewLifecycleOwner, Observer {
+                getWeather()
+            })
         }
     }
 
