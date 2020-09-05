@@ -15,8 +15,23 @@ import retrofit2.Retrofit
 
 class WeatherViewModel : ViewModel() {
 
-    lateinit var latitude : MutableLiveData<Double>
-    lateinit var longitude : MutableLiveData<Double>
+    var latitude = MutableLiveData<Double>()
+    var longitude = MutableLiveData<Double>()
+
+    var day = MutableLiveData<String>()
+    var locate = MutableLiveData<String>()
+    var weather_image = MutableLiveData<String>()
+    var temp = MutableLiveData<String>()
+    var feelingTemp = MutableLiveData<String>()
+    var windSpeed = MutableLiveData<String>()
+    var look = MutableLiveData<String>()
+    var atmosphericPressure = MutableLiveData<String>()
+    var humi = MutableLiveData<String>()
+    var dewPoint = MutableLiveData<String>()
+    var sunrise = MutableLiveData<String>()
+    var sunset = MutableLiveData<String>()
+
+
 
     lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
@@ -28,6 +43,7 @@ class WeatherViewModel : ViewModel() {
             override fun onFailure(call: Call<WeatherData>, t: Throwable) {
             }
             override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
+
             }
         })
     }

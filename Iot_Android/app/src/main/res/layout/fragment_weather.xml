@@ -24,49 +24,49 @@
             app:layout_constraintWidth_percent="0.0658" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/locate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
-            android:text="대구"
             android:textSize="50sp"
+            android:text="@={viewModel.locate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="수요일"
+            android:text="@={viewModel.day}"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView15"
-            app:layout_constraintStart_toEndOf="@+id/textView15"
-            app:layout_constraintTop_toTopOf="@+id/textView15" />
+            app:layout_constraintBottom_toBottomOf="@+id/locate"
+            app:layout_constraintStart_toEndOf="@+id/locate"
+            app:layout_constraintTop_toTopOf="@+id/locate" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/weather_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="18dp"
             android:src="@drawable/sun"
-            app:layout_constraintEnd_toStartOf="@+id/textView15"
+            app:layout_constraintEnd_toStartOf="@+id/locate"
             app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/locate"
             app:layout_constraintWidth_percent="0.17" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="29"
+            android:text="@={viewModel.temp}"
             android:textSize="80sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-            app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toTopOf="@+id/imageView7" />
+            app:layout_constraintBottom_toBottomOf="@+id/weather_image"
+            app:layout_constraintStart_toEndOf="@+id/weather_image"
+            app:layout_constraintTop_toTopOf="@+id/weather_image" />
 
         <TextView
             android:id="@+id/textView18"
@@ -74,9 +74,9 @@
             android:layout_height="wrap_content"
             android:text="°"
             android:textSize="80sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView17"
-            app:layout_constraintStart_toEndOf="@+id/textView17"
-            app:layout_constraintTop_toTopOf="@+id/textView17" />
+            app:layout_constraintBottom_toBottomOf="@+id/temp"
+            app:layout_constraintStart_toEndOf="@+id/temp"
+            app:layout_constraintTop_toTopOf="@+id/temp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -95,14 +95,14 @@
             android:layout_marginTop="28dp"
             android:text="체감 온도"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@+id/imageView7"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+            app:layout_constraintStart_toStartOf="@+id/weather_image"
+            app:layout_constraintTop_toBottomOf="@+id/weather_image" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/feeling_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 30 "
+            android:text="@={viewModel.feelingTemp}"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView19"
             app:layout_constraintStart_toEndOf="@+id/textView19"
@@ -114,9 +114,9 @@
             android:layout_height="wrap_content"
             android:text="°"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView20"
-            app:layout_constraintStart_toEndOf="@+id/textView20"
-            app:layout_constraintTop_toTopOf="@+id/textView20" />
+            app:layout_constraintBottom_toBottomOf="@+id/feeling_temp"
+            app:layout_constraintStart_toEndOf="@+id/feeling_temp"
+            app:layout_constraintTop_toTopOf="@+id/feeling_temp" />
 
         <TextView
             android:id="@+id/textView22"
@@ -130,10 +130,10 @@
             app:layout_constraintTop_toTopOf="@+id/textView21" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/wind_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 5"
+            android:text="@={viewModel.windSpeed}"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/textView22"
@@ -145,9 +145,9 @@
             android:layout_height="wrap_content"
             android:text="m/s"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView23"
-            app:layout_constraintStart_toEndOf="@+id/textView23"
-            app:layout_constraintTop_toTopOf="@+id/textView23" />
+            app:layout_constraintBottom_toBottomOf="@+id/wind_speed"
+            app:layout_constraintStart_toEndOf="@+id/wind_speed"
+            app:layout_constraintTop_toTopOf="@+id/wind_speed" />
 
         <TextView
             android:id="@+id/textView25"
@@ -161,10 +161,10 @@
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/look"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 10"
+            android:text="@={viewModel.look}"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView25"
             app:layout_constraintStart_toEndOf="@+id/textView25"
@@ -175,9 +175,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="km"
-            app:layout_constraintBottom_toBottomOf="@+id/textView26"
-            app:layout_constraintStart_toEndOf="@+id/textView26"
-            app:layout_constraintTop_toTopOf="@+id/textView26" />
+            app:layout_constraintBottom_toBottomOf="@+id/look"
+            app:layout_constraintStart_toEndOf="@+id/look"
+            app:layout_constraintTop_toTopOf="@+id/look" />
 
         <TextView
             android:id="@+id/textView27"
@@ -189,10 +189,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <TextView
-            android:id="@+id/textView28"
+            android:id="@+id/atmospheric_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 1003"
+            android:text="@={viewModel.atmosphericPressure}"
             app:layout_constraintBottom_toBottomOf="@+id/textView27"
             app:layout_constraintStart_toEndOf="@+id/textView27" />
 
@@ -201,9 +201,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="hPa"
-            app:layout_constraintBottom_toBottomOf="@+id/textView28"
-            app:layout_constraintStart_toEndOf="@+id/textView28"
-            app:layout_constraintTop_toTopOf="@+id/textView28" />
+            app:layout_constraintBottom_toBottomOf="@+id/atmospheric_pressure"
+            app:layout_constraintStart_toEndOf="@+id/atmospheric_pressure"
+            app:layout_constraintTop_toTopOf="@+id/atmospheric_pressure" />
 
         <TextView
             android:id="@+id/textView30"
@@ -215,10 +215,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/humi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 62"
+            android:text="@={viewModel.humi}"
             app:layout_constraintBottom_toBottomOf="@+id/textView30"
             app:layout_constraintStart_toEndOf="@+id/textView30"
             app:layout_constraintTop_toBottomOf="@+id/textView22"/>
@@ -228,9 +228,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="%"
-            app:layout_constraintBottom_toBottomOf="@+id/textView31"
-            app:layout_constraintStart_toEndOf="@+id/textView31"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+            app:layout_constraintBottom_toBottomOf="@+id/humi"
+            app:layout_constraintStart_toEndOf="@+id/humi"
+            app:layout_constraintTop_toBottomOf="@+id/wind_speed" />
 
         <TextView
             android:id="@+id/textView33"
@@ -242,10 +242,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
         <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/dew_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 21"
+            android:text="@={viewModel.dewPoint}"
             app:layout_constraintBottom_toBottomOf="@+id/textView33"
             app:layout_constraintStart_toEndOf="@+id/textView33"
             app:layout_constraintTop_toTopOf="@+id/textView33" />
@@ -255,9 +255,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="°"
-            app:layout_constraintBottom_toBottomOf="@+id/textView34"
-            app:layout_constraintStart_toEndOf="@+id/textView34"
-            app:layout_constraintTop_toTopOf="@+id/textView34" />
+            app:layout_constraintBottom_toBottomOf="@+id/dew_point"
+            app:layout_constraintStart_toEndOf="@+id/dew_point"
+            app:layout_constraintTop_toTopOf="@+id/dew_point" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -309,11 +309,11 @@
             app:layout_constraintTop_toTopOf="@+id/textView42" />
 
         <TextView
-            android:id="@+id/textView41"
+            android:id="@+id/sunrise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="05:16"
+            android:text="@={viewModel.sunrise}"
             android:textSize="23sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView43"
             app:layout_constraintStart_toEndOf="@+id/textView43"
@@ -341,11 +341,11 @@
             app:layout_constraintTop_toTopOf="@+id/textView44" />
 
         <TextView
-            android:id="@+id/textView46"
+            android:id="@+id/sunset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="19:44"
+            android:text="@={viewModel.sunset}"
             android:textSize="23sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView45"
             app:layout_constraintStart_toEndOf="@+id/textView45"
