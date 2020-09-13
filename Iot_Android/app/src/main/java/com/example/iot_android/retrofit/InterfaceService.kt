@@ -15,7 +15,7 @@ interface InterfaceService {
         @Body loginBody: LoginBody
     ) : Call<LoginData>
 
-    @POST("/auth/registration/")
+    @POST("/auth/signUp/")
     fun register(
         @Body body: RegisterBody
     ) :Call<RegisterData>
