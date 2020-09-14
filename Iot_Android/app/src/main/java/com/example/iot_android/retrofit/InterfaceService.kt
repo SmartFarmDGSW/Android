@@ -7,10 +7,7 @@ import com.example.iot_android.model.RegisterBody
 import com.example.iot_android.model.RegisterData
 import com.example.iot_android.model.weather.WeatherData
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface InterfaceService {
     @POST("/auth/login/")
@@ -23,9 +20,12 @@ interface InterfaceService {
         @Body body: RegisterBody
     ) :Call<RegisterData>
 
-    @GET("lat={lat}&lon={lon}&units=metric&exclude=minutely,current,hourly&appid=${R.string.api_key}")
+    @GET("/onecall")
     fun getWeather(
-        @Path("lat") lat: String,
-        @Path("lon") lon: String
-    ) :Call<WeatherData>
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("units") unites: String,
+        @Query("exclude") exclude : String,
+        @Query("appid") appId : String
+        ) :Call<WeatherData>
 }
