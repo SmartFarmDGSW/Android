@@ -50,15 +50,15 @@ class RegisterMakeProfileActivity : AppCompatActivity() {
                 }
             })
 
-            checkRegister.observe(this@RegisterMakeProfileActivity, Observer {
-                if(checkRegister.value == false)
+            status.observe(this@RegisterMakeProfileActivity, Observer {
+                if(status.value == "200")
                 {
                     toast("회원가입 실패")
                     startActivity(LoginMainActivity::class.java)
                 }
                 else{
                     toast("회원가입 성공")
-                    startActivity(MainActivity::class.java)
+                    startActivity(LoginMainActivity::class.java)
                 }
             })
         }

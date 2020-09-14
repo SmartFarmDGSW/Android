@@ -28,7 +28,7 @@ class LoginViewModel : ViewModel(){
 
     fun login() {
         myAPI = retrofit.create(InterfaceService::class.java)
-        myAPI.login(LoginBody(username = username.value.toString(), email = email.value.toString(), password = password.value.toString())).enqueue(object :
+        myAPI.login(LoginBody(email = email.value.toString(), password = password.value.toString())).enqueue(object :
             Callback<LoginData> {
             override fun onFailure(call: Call<LoginData>, t: Throwable) {
                 status.value = 400

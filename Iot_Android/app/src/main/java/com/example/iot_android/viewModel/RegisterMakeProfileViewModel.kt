@@ -18,7 +18,7 @@ class RegisterMakeProfileViewModel : ViewModel() {
     var username = MutableLiveData<String>()
     val btn = SingleLiveEvent<Unit>()
     var checkNull = MutableLiveData<Boolean>()
-    var checkRegister = MutableLiveData<Boolean>()
+    var status = MutableLiveData<String>()
 
     lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
@@ -31,18 +31,15 @@ class RegisterMakeProfileViewModel : ViewModel() {
         myAPI = retrofit.create(InterfaceService::class.java)
         myAPI.register(RegisterBody(username = username.value.toString(),
                                         email = MyApplication.prefs.getEmail("loginDataEmail", ""),
-                                        password1 = MyApplication.prefs.getPassword("loginDataPassword", ""),
-                                        password2 = MyApplication.prefs.getPassword("loginDataPassword", ""))
+                                        password = MyApplication.prefs.getPassword("loginDataPassword", ""))
         ).enqueue(object : Callback<RegisterData> {
             override fun onFailure(call: Call<RegisterData>, t: Throwable) {
-                checkRegister.value = false
+                status.value = t.message
                 Log.d("ASD", "DDD");
             }
 
             override fun onResponse(call: Call<RegisterData>, response: Response<RegisterData>) {
-                checkRegister.value = true
-                MyApplication.prefs.setToken("token", response.body()?.key)
-                Log.d("key", "pk:"+response.body()?.key)
+                status.value = response.code().toString()
             }
         })
     }
