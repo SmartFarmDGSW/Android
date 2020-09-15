@@ -50,8 +50,8 @@ class WeatherFragment : Fragment() {
         gpsTracker = GpsTracker(this)
         gpsTracker.getLocation(requireContext())
 
-        mViewModel.latitude.value = gpsTracker.getLatitude()
-        mViewModel.longitude.value = gpsTracker.getLongitude()
+        mViewModel.latitude.value = gpsTracker.getLatitude().toInt()
+        mViewModel.longitude.value = gpsTracker.getLongitude().toInt()
 
         mViewModel.retrofit = RetrofitClientWeather.getInstance()
     }

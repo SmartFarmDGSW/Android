@@ -22,8 +22,8 @@ interface InterfaceService {
 
     @GET("onecall")
     fun getWeather(
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
+        @Query("lat") lat: Int,
+        @Query("lon") lon: Int,
         @Query("units") unites: String,
         @Query("exclude") exclude : String,
         @Query("appid") appId : String
