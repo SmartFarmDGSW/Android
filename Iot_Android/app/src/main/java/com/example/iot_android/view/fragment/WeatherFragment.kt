@@ -16,6 +16,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.iot_android.R
 import com.example.iot_android.databinding.FragmentWeatherBinding
+import com.example.iot_android.retrofit.RetrofitClient
+import com.example.iot_android.retrofit.RetrofitClientWeather
 import com.example.iot_android.viewModel.WeatherViewModel
 import com.example.iot_android.widget.GpsTracker
 
@@ -50,6 +52,8 @@ class WeatherFragment : Fragment() {
 
         mViewModel.latitude.value = gpsTracker!!.getLatitude()
         mViewModel.longitude.value = gpsTracker!!.getLongitude()
+
+        mViewModel.retrofit = RetrofitClientWeather.getInstance()
     }
 
 

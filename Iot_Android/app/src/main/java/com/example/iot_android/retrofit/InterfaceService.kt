@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface InterfaceService {
-    @POST("/auth/login/")
+    @POST("/auth/login")
     fun login(
         @Body loginBody: LoginBody
     ) : Call<LoginData>
