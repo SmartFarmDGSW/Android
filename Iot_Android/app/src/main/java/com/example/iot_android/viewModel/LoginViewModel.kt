@@ -32,13 +32,14 @@ class LoginViewModel : ViewModel(){
             Callback<LoginData> {
             override fun onFailure(call: Call<LoginData>, t: Throwable) {
                 status.value = 400
+                Log.d("TAG", "t : ${t.message}")
             }
             override fun onResponse(call: Call<LoginData>, response: Response<LoginData>) {
                 Log.d("TAG", "성공")
                 status.value = response.code()
-                MyApplication.prefs.setUsername("name", username.value.toString())
-                MyApplication.prefs.setEmail("email", email.value.toString())
-                MyApplication.prefs.setToken("token", response.body()?.key)
+                Log.d("TAG", "status : ${status.value.toString()}")
+                Log.d("TAG", "status : ${response.message()}")
+                MyApplication.prefs.setToken("token", response.body()?.token)
             }
         })
     }

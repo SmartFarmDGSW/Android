@@ -6,8 +6,6 @@
     tools:context=".view.fragment.ManageFragment">
 
     <data>
-        <import type="android.view.View" />
-
         <variable
             name="viewModel"
             type="com.example.iot_android.viewModel.ManageViewModel"/>

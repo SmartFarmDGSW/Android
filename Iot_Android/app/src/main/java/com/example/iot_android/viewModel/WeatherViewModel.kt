@@ -1,5 +1,6 @@
 package com.example.iot_android.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.iot_android.R
@@ -10,6 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
+import java.util.*
 
 class WeatherViewModel : ViewModel() {
 
@@ -53,17 +55,21 @@ class WeatherViewModel : ViewModel() {
                 atmosphericPressure.value = response.body()?.daily?.get(0)?.pressure.toString()
                 humi.value = response.body()?.daily?.get(0)?.humidity.toString()
                 dewPoint.value = response.body()?.daily?.get(0)?.dew_point.toString()
-                sunrise.value = getDate(response.body()?.daily?.get(0)?.sunrise!!)
-                sunset.value = getDate(response.body()?.daily?.get(0)?.sunset!!)
+                Log.d("TAG", "sunrise : ${response.body()?.daily?.get(0)?.sunrise}")
+                Log.d("TAG", "sunrise : ${getDate(response.body()?.daily?.get(0)?.sunrise)}")
+                sunrise.value = getDate(response.body()?.daily?.get(0)?.sunrise)
+                Log.d("TAG", "sunset : ${response.body()?.daily?.get(0)?.sunset}")
+                Log.d("TAG", "sunset : ${getDate(response.body()?.daily?.get(0)?.sunset)}")
+                sunset.value = getDate(response.body()?.daily?.get(0)?.sunset)
             }
         })
     }
 
-    fun getDate(long: Int) : String{
+    fun getDate(milliSecond: Int?) : String{
+        var milliSeconds : Long = milliSecond!!.toLong()
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
-        return simpleDateFormat.format(long)
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = milliSeconds
+        return simpleDateFormat.format(calendar.time)
     }
-
-
-
 }

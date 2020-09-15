@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface InterfaceService {
-    @POST("/auth/login/")
+    @POST("/auth/login")
     fun login(
         @Body loginBody: LoginBody
     ) : Call<LoginData>
@@ -20,7 +20,7 @@ interface InterfaceService {
         @Body body: RegisterBody
     ) :Call<RegisterData>
 
-    @GET("/onecall")
+    @GET("onecall")
     fun getWeather(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,

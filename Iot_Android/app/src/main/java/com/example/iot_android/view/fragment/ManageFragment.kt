@@ -17,7 +17,7 @@ class ManageFragment : Fragment() {
     lateinit var mBinding: FragmentManageBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_mainpage, container, false)!!
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_manage, container, false)!!
         return mBinding.root
     }
 

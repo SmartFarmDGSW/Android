@@ -9,7 +9,7 @@ object RetrofitClientWeather {
     fun getInstance() : Retrofit {
         if(instance == null){
             instance = Retrofit.Builder()
-                .baseUrl("https://api.openweathermap.org/data/2.5")
+                .baseUrl("https://api.openweathermap.org/data/2.5/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
