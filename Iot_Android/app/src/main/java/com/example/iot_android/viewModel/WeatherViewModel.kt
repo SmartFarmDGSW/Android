@@ -2,11 +2,8 @@ package com.example.iot_android.viewModel
 
 import android.text.format.DateFormat
 import android.util.Log
-import android.widget.Switch
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.iot_android.R
-import com.example.iot_android.model.WeatherLayoutData
 import com.example.iot_android.model.weather.WeatherData
 import com.example.iot_android.retrofit.InterfaceService
 import retrofit2.Call
@@ -14,8 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.lang.Long
-import java.text.SimpleDateFormat
-import java.time.DayOfWeek
+import java.sql.Array
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,7 +22,7 @@ class WeatherViewModel : ViewModel() {
 
     var day = MutableLiveData<String>()
     var locate = MutableLiveData<String>()
-    var weather_image = MutableLiveData<String>()
+    var weather = MutableLiveData<String>()
     var temp = MutableLiveData<String>()
     var feelingTemp = MutableLiveData<String>()
     var windSpeed = MutableLiveData<String>()
@@ -36,7 +32,8 @@ class WeatherViewModel : ViewModel() {
     var dewPoint = MutableLiveData<String>()
     var sunrise = MutableLiveData<String>()
     var sunset = MutableLiveData<String>()
-    lateinit var weatherList : ArrayList<WeatherLayoutData>
+    var finishSetData = MutableLiveData<Boolean>()
+    lateinit var weatherList : ArrayList<WeatherData>
 
     lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
@@ -60,6 +57,7 @@ class WeatherViewModel : ViewModel() {
                 Log.d("TAG", "code ${response.message()}" )
                 temp.value = response.body()?.daily?.get(0)?.temp?.day.toString()
                 day.value = getDay()
+                weather.value = response.body()?.daily?.get(0)?.weather?.get(0)?.main.toString()
                 feelingTemp.value = response.body()?.daily?.get(0)?.feels_like?.day.toString()
                 windSpeed.value = response.body()?.daily?.get(0)?.wind_speed.toString()
                 atmosphericPressure.value = response.body()?.daily?.get(0)?.pressure.toString()
@@ -72,6 +70,8 @@ class WeatherViewModel : ViewModel() {
                 Log.d("TAG", "sunset : ${response.body()?.daily?.get(0)?.sunset}")
                 Log.d("TAG", "sunset : ${getDate(response.body()?.daily?.get(0)?.sunset)}")
                 sunset.value = getDate((response.body()?.daily?.get(0)?.sunset)!! * 1000)
+                weatherList = response.body() as ArrayList<WeatherData>
+                finishSetData.value = true
             }
         })
     }
