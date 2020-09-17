@@ -38,22 +38,25 @@
             android:id="@+id/day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
             android:text="@={viewModel.day}"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/locate"
             app:layout_constraintStart_toEndOf="@+id/locate"
-            app:layout_constraintTop_toTopOf="@+id/locate" />
+            app:layout_constraintTop_toTopOf="@+id/locate"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/weather_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="18dp"
             android:src="@drawable/sun"
-            app:layout_constraintEnd_toStartOf="@+id/locate"
+            app:layout_constraintEnd_toEndOf="@+id/textView16"
             app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/locate"
             app:layout_constraintWidth_percent="0.17" />
 
@@ -63,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@={viewModel.temp}"
-            android:textSize="80sp"
+            android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="@+id/weather_image"
             app:layout_constraintStart_toEndOf="@+id/weather_image"
             app:layout_constraintTop_toTopOf="@+id/weather_image" />
@@ -81,10 +84,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginBottom="15dp"
             android:text="C"
             android:textSize="50sp"
-            android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView18"
             app:layout_constraintStart_toEndOf="@+id/textView18" />
 
@@ -95,7 +97,8 @@
             android:layout_marginTop="28dp"
             android:text="체감 온도"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@+id/weather_image"
+            app:layout_constraintEnd_toEndOf="@+id/weather_image"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weather_image" />
 
         <TextView
@@ -260,7 +263,7 @@
             app:layout_constraintTop_toTopOf="@+id/dew_point" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/mRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -280,10 +283,10 @@
             android:scaleType="center"
             android:src="@drawable/card"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="@+id/mRecyclerView"
             app:layout_constraintHeight_percent="0.23"
-            app:layout_constraintStart_toStartOf="@+id/recyclerView"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+            app:layout_constraintStart_toStartOf="@+id/mRecyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/mRecyclerView"
             app:layout_constraintWidth_percent="0.88" />
 
         <TextView
@@ -350,6 +353,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView45"
             app:layout_constraintStart_toEndOf="@+id/textView45"
             app:layout_constraintTop_toTopOf="@+id/textView45" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/locate"
+            app:layout_constraintStart_toStartOf="@+id/locate"
+            app:layout_constraintTop_toBottomOf="@+id/locate" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
