@@ -2,9 +2,11 @@ package com.example.iot_android.viewModel
 
 import android.text.format.DateFormat
 import android.util.Log
+import android.widget.Switch
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.iot_android.R
+import com.example.iot_android.model.WeatherLayoutData
 import com.example.iot_android.model.weather.WeatherData
 import com.example.iot_android.retrofit.InterfaceService
 import retrofit2.Call
@@ -13,7 +15,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import java.lang.Long
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
 import java.util.*
+import kotlin.collections.ArrayList
 
 class WeatherViewModel : ViewModel() {
 
@@ -32,6 +36,7 @@ class WeatherViewModel : ViewModel() {
     var dewPoint = MutableLiveData<String>()
     var sunrise = MutableLiveData<String>()
     var sunset = MutableLiveData<String>()
+    lateinit var weatherList : ArrayList<WeatherLayoutData>
 
     lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
@@ -53,8 +58,8 @@ class WeatherViewModel : ViewModel() {
             override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
                 Log.d("TAG", "code ${response.code()}" )
                 Log.d("TAG", "code ${response.message()}" )
-                locate.value = response.body()?.timezone
                 temp.value = response.body()?.daily?.get(0)?.temp?.day.toString()
+                day.value = getDay()
                 feelingTemp.value = response.body()?.daily?.get(0)?.feels_like?.day.toString()
                 windSpeed.value = response.body()?.daily?.get(0)?.wind_speed.toString()
                 atmosphericPressure.value = response.body()?.daily?.get(0)?.pressure.toString()
@@ -74,4 +79,21 @@ class WeatherViewModel : ViewModel() {
     fun getDate(milliSecond: Int?) : String{
         return DateFormat.format("hh:mm", Long.parseLong(milliSecond.toString())).toString();
     }
+
+    fun getDay() : String{
+        var date = Calendar.getInstance().get(Calendar.DAY_OF_WEEK).toString()
+        when(date) {
+            "1" -> date = "일요일"
+            "2" -> date = "월요일"
+            "3" -> date = "화요일"
+            "4" -> date = "수요일"
+            "5" -> date = "목요일"
+            "6" -> date = "금요일"
+            "7" -> date = "토요일"
+        }
+        return date
+    }
+
+
 }
+
