@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.iot_android.R
+import com.example.iot_android.adapter.WeatherAdapter
 import com.example.iot_android.databinding.FragmentWeatherBinding
 import com.example.iot_android.retrofit.RetrofitClientWeather
 import com.example.iot_android.viewModel.WeatherViewModel
@@ -73,6 +75,12 @@ class WeatherFragment : Fragment() {
         with(mViewModel) {
             latitude.observe(viewLifecycleOwner, Observer {
                 getWeather()
+            })
+            finishSetData.observe(viewLifecycleOwner, Observer {
+                val mAdapter = WeatherAdapter(weatherList)
+                mRecyclerView.adapter = mAdapter
+                mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
+
             })
         }
     }
