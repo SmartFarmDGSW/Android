@@ -6,12 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.iot_android.model.weather.WeatherData
 import com.example.iot_android.retrofit.InterfaceService
+import com.example.iot_android.service.utils.DateManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.lang.Long
 import java.sql.Array
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,7 +35,7 @@ class WeatherViewModel : ViewModel() {
     var sunrise = MutableLiveData<String>()
     var sunset = MutableLiveData<String>()
     var finishSetData = MutableLiveData<Boolean>()
-    lateinit var weatherList : ArrayList<WeatherData>
+    lateinit var weatherList : WeatherData
 
     lateinit var myAPI : InterfaceService
     lateinit var retrofit: Retrofit
@@ -56,7 +58,7 @@ class WeatherViewModel : ViewModel() {
                 Log.d("TAG", "code ${response.code()}" )
                 Log.d("TAG", "code ${response.message()}" )
                 temp.value = response.body()?.daily?.get(0)?.temp?.day.toString()
-                day.value = getDay()
+                day.value = DateManager.getDate(LocalDateTime.now())
                 weather.value = response.body()?.daily?.get(0)?.weather?.get(0)?.main.toString()
                 feelingTemp.value = response.body()?.daily?.get(0)?.feels_like?.day.toString()
                 windSpeed.value = response.body()?.daily?.get(0)?.wind_speed.toString()
@@ -70,7 +72,7 @@ class WeatherViewModel : ViewModel() {
                 Log.d("TAG", "sunset : ${response.body()?.daily?.get(0)?.sunset}")
                 Log.d("TAG", "sunset : ${getDate(response.body()?.daily?.get(0)?.sunset)}")
                 sunset.value = getDate((response.body()?.daily?.get(0)?.sunset)!! * 1000)
-                weatherList = response.body() as ArrayList<WeatherData>
+                weatherList = response.body() as WeatherData
                 finishSetData.value = true
             }
         })
@@ -80,19 +82,7 @@ class WeatherViewModel : ViewModel() {
         return DateFormat.format("hh:mm", Long.parseLong(milliSecond.toString())).toString();
     }
 
-    fun getDay() : String{
-        var date = Calendar.getInstance().get(Calendar.DAY_OF_WEEK).toString()
-        when(date) {
-            "1" -> date = "일요일"
-            "2" -> date = "월요일"
-            "3" -> date = "화요일"
-            "4" -> date = "수요일"
-            "5" -> date = "목요일"
-            "6" -> date = "금요일"
-            "7" -> date = "토요일"
-        }
-        return date
-    }
+
 
 
 }

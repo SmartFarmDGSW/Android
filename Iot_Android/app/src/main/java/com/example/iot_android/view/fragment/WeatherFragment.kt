@@ -79,7 +79,7 @@ class WeatherFragment : Fragment() {
             finishSetData.observe(viewLifecycleOwner, Observer {
                 val mAdapter = WeatherAdapter(weatherList)
                 mRecyclerView.adapter = mAdapter
-                mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
+                mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL ,false)
 
             })
         }

@@ -1,7 +1,7 @@
 package com.example.iot_android.model.weather
 
 data class Daily(
-    val dt: Int,
+    val dt: Long,
     val sunrise: Int,
     val sunset: Int,
     val temp: Temp,
