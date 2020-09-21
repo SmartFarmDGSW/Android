@@ -33,7 +33,7 @@ class WeatherAdapter(val weatherList : WeatherData) : RecyclerView.Adapter<Weath
         val temp = itemView.findViewById<TextView>(R.id.textView38)
         val day = itemView.findViewById<TextView>(R.id.textView40)
         fun bind(weather: Daily) {
-            temp.text = weather.temp.day.toString()
+            temp.text = weather.temp.day.toInt().toString()
             day.text = DateManager.getDate(LocalDateTime.ofInstant(Instant.ofEpochMilli(weather.dt * 1000), TimeZone.getDefault().toZoneId()))
         }
     }

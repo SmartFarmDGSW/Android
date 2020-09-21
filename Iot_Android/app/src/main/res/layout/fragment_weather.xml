@@ -27,9 +27,9 @@
             android:id="@+id/locate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:textSize="50sp"
+            android:layout_marginTop="80dp"
             android:text="@={viewModel.locate}"
+            android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="°"
-            android:textSize="80sp"
+            android:textSize="60sp"
             app:layout_constraintBottom_toBottomOf="@+id/temp"
             app:layout_constraintStart_toEndOf="@+id/temp"
             app:layout_constraintTop_toTopOf="@+id/temp" />
@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="체감 온도"
+            android:text="체감 온도 : "
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="@+id/weather_image"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="풍속"
+            android:text="풍속 : "
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView21"
             app:layout_constraintStart_toEndOf="@+id/textView21"
@@ -157,7 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text=" 시야"
+            android:text=" 시야 : "
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
             app:layout_constraintStart_toEndOf="@+id/textView24"
@@ -187,7 +187,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="기압계"
+            android:text="기압계 : "
             app:layout_constraintStart_toStartOf="@+id/textView19"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -213,7 +213,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="습도"
+            android:text="습도 : "
             app:layout_constraintStart_toStartOf="@+id/textView22"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -240,7 +240,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text=" 이슬점"
+            android:text=" 이슬점 : "
             app:layout_constraintStart_toStartOf="@+id/textView25"
             app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -265,12 +265,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="28dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.147"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
