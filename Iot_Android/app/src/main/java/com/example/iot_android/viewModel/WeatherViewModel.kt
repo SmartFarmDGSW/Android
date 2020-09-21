@@ -4,9 +4,14 @@ import android.text.format.DateFormat
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.iot_android.adapter.WeatherAdapter
 import com.example.iot_android.model.weather.WeatherData
 import com.example.iot_android.retrofit.InterfaceService
+import com.example.iot_android.room.DataBase
+import com.example.iot_android.room.WeatherDB
 import com.example.iot_android.service.utils.DateManager
+import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,9 +23,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class WeatherViewModel : ViewModel() {
-
-    var latitude = MutableLiveData<Int>()
-    var longitude = MutableLiveData<Int>()
 
     var day = MutableLiveData<String>()
     var locate = MutableLiveData<String>()
@@ -34,48 +36,24 @@ class WeatherViewModel : ViewModel() {
     var dewPoint = MutableLiveData<String>()
     var sunrise = MutableLiveData<String>()
     var sunset = MutableLiveData<String>()
-    var finishSetData = MutableLiveData<Boolean>()
-    lateinit var weatherList : WeatherData
 
-    lateinit var myAPI : InterfaceService
-    lateinit var retrofit: Retrofit
+    lateinit var weatherList : WeatherDB
 
-    fun getWeather(){
-        myAPI = retrofit.create(InterfaceService::class.java)
-        myAPI.getWeather(
-            lat = latitude.value!!,
-            lon = longitude.value!!,
-            appId = "beb156f9ab48aafb74a83023fab39ef3",
-            exclude = "minutely,current,hourly",
-            unites = "metric"
-        ).enqueue(object :
-            Callback<WeatherData> {
-            override fun onFailure(call: Call<WeatherData>, t: Throwable) {
-                Log.d("TAG", "t : ${t.message}")
-            }
+    var weatherDb : DataBase? = null
 
-            override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
-                Log.d("TAG", "code ${response.code()}" )
-                Log.d("TAG", "code ${response.message()}" )
-                temp.value = response.body()?.daily?.get(0)?.temp?.day.toString()
-                day.value = DateManager.getDate(LocalDateTime.now())
-                weather.value = response.body()?.daily?.get(0)?.weather?.get(0)?.main.toString()
-                feelingTemp.value = response.body()?.daily?.get(0)?.feels_like?.day.toString()
-                windSpeed.value = response.body()?.daily?.get(0)?.wind_speed.toString()
-                atmosphericPressure.value = response.body()?.daily?.get(0)?.pressure.toString()
-                humi.value = response.body()?.daily?.get(0)?.humidity.toString()
-                Log.d("TAG, ","humi : ${humi.value}")
-                dewPoint.value = response.body()?.daily?.get(0)?.dew_point.toString()
-                Log.d("TAG", "sunrise : ${response.body()?.daily?.get(0)?.sunrise}")
-                Log.d("TAG", "sunrise : ${getDate((response.body()?.daily?.get(0)?.sunrise))}")
-                sunrise.value = getDate((response.body()?.daily?.get(0)?.sunrise)!! * 1000)
-                Log.d("TAG", "sunset : ${response.body()?.daily?.get(0)?.sunset}")
-                Log.d("TAG", "sunset : ${getDate(response.body()?.daily?.get(0)?.sunset)}")
-                sunset.value = getDate((response.body()?.daily?.get(0)?.sunset)!! * 1000)
-                weatherList = response.body() as WeatherData
-                finishSetData.value = true
-            }
-        })
+    fun setData(){
+        weatherList = weatherDb?.dao()?.getAll()!!
+        temp.value = weatherList.daily?.get(0)?.temp?.day.toString()
+        day.value = DateManager.getDate(LocalDateTime.now())
+        weather.value = weatherList.daily?.get(0)?.weather?.get(0)?.main.toString()
+        feelingTemp.value = weatherList.daily?.get(0)?.feels_like?.day.toString()
+        windSpeed.value = weatherList.daily?.get(0)?.wind_speed.toString()
+        atmosphericPressure.value = weatherList.daily?.get(0)?.pressure.toString()
+        humi.value = weatherList.daily?.get(0)?.humidity.toString()
+        Log.d("TAG, ","humi : ${humi.value}")
+        dewPoint.value = weatherList.daily?.get(0)?.dew_point.toString()
+        sunrise.value = getDate((weatherList.daily?.get(0)?.sunrise)!! * 1000)
+        sunset.value = getDate((weatherList.daily?.get(0)?.sunset)!! * 1000)
     }
 
     fun getDate(milliSecond: Int?) : String{

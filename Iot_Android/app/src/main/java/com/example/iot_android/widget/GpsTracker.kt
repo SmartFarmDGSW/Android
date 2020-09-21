@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import com.example.iot_android.view.fragment.WeatherFragment
 
 
-class GpsTracker(weatherFragment: WeatherFragment) : Service(), LocationListener {
+class GpsTracker() : Service(), LocationListener {
     private var mContext: Context? = null
     private var location: Location? = null
     private var latitude = 0.0
