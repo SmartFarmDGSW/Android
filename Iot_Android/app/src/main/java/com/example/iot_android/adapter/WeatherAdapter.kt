@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.iot_android.R
 import com.example.iot_android.model.weather.Daily
 import com.example.iot_android.model.weather.WeatherData
+import com.example.iot_android.room.WeatherDB
 import com.example.iot_android.service.utils.DateManager
 import java.time.Instant
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.collections.ArrayList
 
-class WeatherAdapter(val weatherList : WeatherData) : RecyclerView.Adapter<WeatherAdapter.Holder>() {
+class WeatherAdapter(val weatherList: WeatherDB) : RecyclerView.Adapter<WeatherAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.weather_item, parent, false)
@@ -21,11 +23,11 @@ class WeatherAdapter(val weatherList : WeatherData) : RecyclerView.Adapter<Weath
     }
 
     override fun getItemCount(): Int {
-        return weatherList.daily.size - 1
+        return weatherList.daily!!.size - 1
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(weatherList.daily[position + 1])
+        holder.bind(weatherList.daily?.get(position + 1)!!)
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
