@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.iot_android.R
+import com.example.iot_android.room.DataBase
 import com.example.iot_android.widget.MyApplication
 import com.example.iot_android.widget.extension.startActivity
 import com.example.iot_android.widget.extension.toast
@@ -24,6 +25,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        val weatherDb : DataBase = DataBase.getInstance(this)!!
+        weatherDb.dao().delete()
 
         Log.d("TAG", checkPermission.toString())
 
