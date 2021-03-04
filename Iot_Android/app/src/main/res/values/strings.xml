@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Iot_Android</string>
-    <string name="title_home">Home</string>
-    <string name="title_manage">manage</string>
-    <string name="title_mypage">mypage</string>
-    <string name="api_key">beb156f9ab48aafb74a83023fab39ef3</string>
-</resources>
