@@ -1,4 +1,4 @@
-package com.example.smartfarm
+package com.example.smart_farm
 
 import org.junit.Test
 

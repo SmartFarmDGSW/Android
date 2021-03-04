@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Smartfarm</string>
+    <string name="app_logo">AppLogo</string>
+    <string name="app_mark">AppMark</string>
+    <string name="app_slogan">AppSlogan</string>
+    <string name="text_email_login">Email Login</string>
+    <string name="text_login">Login</string>
+    <string name="text_name">Name</string>
+    <string name="text_edit_text_background">EditTextBackground</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Password</string>
+    <string name="text_sign_up_question">계정이 없으신가요?</string>
 </resources>
