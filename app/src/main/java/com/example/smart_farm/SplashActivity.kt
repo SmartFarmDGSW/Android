@@ -1,4 +1,4 @@
-package com.example.smart_farm.view
+package com.example.smart_farm
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
