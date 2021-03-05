@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Smartfarm">
 
-        <activity android:name="com.example.smart_farm.view.SignActivity" />
-        <activity android:name="com.example.smart_farm.view.SplashActivity">
+        <activity android:name="com.example.smart_farm.SignActivity" />
+        <activity android:name="com.example.smart_farm.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
