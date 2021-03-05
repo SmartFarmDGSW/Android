@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Smartfarm"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:usesCleartextTraffic="true">
 
         <activity android:name="com.example.smart_farm.view.SignActivity" />
         <activity android:name="com.example.smart_farm.view.SplashActivity">
