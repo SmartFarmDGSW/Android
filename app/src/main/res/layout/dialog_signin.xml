@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="myViewModel"
+            type="com.example.smart_farm.viewmodel.SignInDialogViewModel" />
+
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +53,8 @@
                 android:ems="10"
                 android:hint="@string/text_name"
                 android:inputType="text"
+                android:maxLines="1"
+                android:text="@{myViewModel.nameData}"
                 android:textColor="@color/black"
                 android:textColorHint="@color/mainEditColor"
                 android:textSize="20sp"
@@ -83,6 +93,8 @@
                 android:ems="10"
                 android:hint="@string/text_email"
                 android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:text="@{myViewModel.emailData}"
                 android:textColor="@color/black"
                 android:textColorHint="@color/mainEditColor"
                 android:textSize="20sp"
@@ -121,6 +133,8 @@
                 android:ems="10"
                 android:hint="@string/text_password"
                 android:inputType="textPassword"
+                android:maxLines="1"
+                android:text="@{myViewModel.passwordData}"
                 android:textColor="@color/black"
                 android:textColorHint="@color/mainEditColor"
                 android:textSize="20sp"
