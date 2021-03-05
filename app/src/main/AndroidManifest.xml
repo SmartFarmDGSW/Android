@@ -10,10 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Smartfarm">
+        android:theme="@style/Theme.Smartfarm"
+        android:fullBackupContent="@xml/backup_descriptor">
 
-        <activity android:name="com.example.smart_farm.SignActivity" />
-        <activity android:name="com.example.smart_farm.SplashActivity">
+        <activity android:name="com.example.smart_farm.view.SignActivity" />
+        <activity android:name="com.example.smart_farm.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
