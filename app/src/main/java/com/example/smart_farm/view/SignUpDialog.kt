@@ -34,11 +34,16 @@ class SignUpDialog : BottomSheetDialogFragment() {
 
         dataBinding.apply{
 
+            myViewModel = viewModel
             lifecycleOwner = this@SignUpDialog
 
             signIn.setOnClickListener {
                 signInDialog.show(fragmentManager!!, "signUpDialog")
                 dialog?.dismiss()
+            }
+
+            signUpButton.setOnClickListener {
+                viewModel!!.signUp()
             }
         }
 

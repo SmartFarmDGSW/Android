@@ -7,6 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+//Retrofit 클라이언트 설정
 object RetrofitClient {
     private var instance : Retrofit? = null
 
@@ -23,7 +24,7 @@ object RetrofitClient {
                 .build()
 
             instance = Retrofit.Builder()
-                .baseUrl("http://192.168.43.225" + ":8001")
+                .baseUrl("http://192.168.43.226" + ":8001")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

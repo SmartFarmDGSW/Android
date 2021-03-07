@@ -6,9 +6,7 @@ import android.util.Log
 import android.widget.EditText
 import androidx.annotation.Dimension
 import androidx.core.widget.addTextChangedListener
-import androidx.databinding.BindingAdapter
-import androidx.databinding.InverseBindingAdapter
-import androidx.databinding.InverseBindingListener
+import androidx.databinding.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,31 +26,30 @@ class SignInDialogViewModel : ViewModel() {
 
     //로그인에 필요한 변수들
     private var name = MutableLiveData<String>()
-    var nameData: LiveData<String>
+    val nameData: LiveData<String>
         get() = name
-        set(value: LiveData<String>){
-            name.value = value.toString()
-        }
 
     private var email = MutableLiveData<String>()
-    var emailData: LiveData<String>
+    val emailData: LiveData<String>
         get() = email
-        set(value: LiveData<String>){
-            email.value = value.toString()
-        }
 
     private var password = MutableLiveData<String>()
-    var passwordData: LiveData<String>
+    val passwordData: LiveData<String>
         get() = password
-        set(value: LiveData<String>){
-            password.value = value.toString()
-        }
 
     //변수 초기화
     init {
         name.value = ""
         email.value = ""
         password.value = ""
+    }
+
+    fun observing(){
+
+    }
+
+    fun getUser(){
+
     }
 
     //Retrofit 설정
@@ -65,7 +62,7 @@ class SignInDialogViewModel : ViewModel() {
     //로그인 함수
     fun signIn() {
 
-        userBody = User(this.name.value.toString(), this.email.value.toString(), this.password.value.toString())
+        userBody = User(this.email.value.toString(), this.password.value.toString(), this.name.value.toString())
 
         CoroutineScope(Dispatchers.IO).launch {
             retrofitService.signIn(userBody)
@@ -74,7 +71,9 @@ class SignInDialogViewModel : ViewModel() {
                         call: Call<Response>,
                         response: retrofit2.Response<Response>
                     ) {
-                        Log.d("retrofit", "success ${response.message()}")
+                        Log.d("retrofit", "error ${response.errorBody()!!.string()}")
+                        Log.d("retrofit", "error ${response.message()}")
+                        Log.d("retrofit", "success ${response.code()}")
                     }
 
                     override fun onFailure(call: Call<Response>, t: Throwable) {
